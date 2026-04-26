@@ -23,7 +23,6 @@ export function DataScramble({
     let frame = 0;
     let animationFrameId: number;
     const queue: { from: string; to: string; start: number; end: number; char?: string }[] = [];
-    let resolvePromise: () => void;
     
     // Prepare scramble queue
     const length = text.length;
@@ -58,7 +57,6 @@ export function DataScramble({
       ref.current.innerHTML = output;
 
       if (complete === queue.length) {
-        if (resolvePromise) resolvePromise();
         setIsScrambling(false);
       } else {
         animationFrameId = requestAnimationFrame(update);
