@@ -21,12 +21,16 @@ export const CardCTASection = forwardRef<HTMLDivElement, React.HTMLAttributes<HT
           </div>
           
           {/* Docking slots for the floating cards to land into */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-center w-full relative h-[400px]">
-            {/* Left Slot - Card 1 */}
-            <div id="dock-slot-1" className="w-[300px] md:w-[340px] h-[360px] border border-dashed border-[var(--color-border-subtle)] rounded-2xl opacity-20 hidden md:block" />
-            
-            {/* Right Slot - Card 2 */}
-            <div id="dock-slot-2" className="w-[300px] md:w-[340px] h-[360px] border border-dashed border-[var(--color-border-subtle)] rounded-2xl opacity-20 hidden md:block" />
+          {/* Mobile: two vertically-stacked slots so each card gets its own row */}
+          <div className="flex flex-col gap-6 items-center justify-center w-full relative md:hidden">
+            <div id="dock-slot-mobile-1" className="w-[300px] h-[360px] border border-dashed border-[var(--color-border-subtle)] rounded-2xl opacity-20" />
+            <div id="dock-slot-mobile-2" className="w-[300px] h-[360px] border border-dashed border-[var(--color-border-subtle)] rounded-2xl opacity-20" />
+          </div>
+
+          {/* Desktop: side-by-side slots */}
+          <div className="hidden md:flex md:flex-row gap-16 items-center justify-center w-full relative h-[400px]">
+            <div id="dock-slot-1" className="w-[340px] h-[360px] border border-dashed border-[var(--color-border-subtle)] rounded-2xl opacity-20" />
+            <div id="dock-slot-2" className="w-[340px] h-[360px] border border-dashed border-[var(--color-border-subtle)] rounded-2xl opacity-20" />
           </div>
         </div>
       </SectionWrapper>

@@ -25,6 +25,9 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "addictd.ai — Know before you post.",
   description: "Premium Brutalist layout",
+  icons: {
+    icon: "/logo-addictd.png",
+  },
 };
 
 export default function RootLayout({
