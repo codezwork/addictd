@@ -86,7 +86,7 @@ export function HeroVariant4Ferrofluid() {
     <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none opacity-90">
       <Canvas camera={{ position: [0, 0, 6], fov: getInitialFov() }}>
         <ResponsiveCamera />
-        <Environment preset="dawn" />
+        <Environment files="/dawn.exr" />
         <ambientLight intensity={0.5} />
         {/* Main frontal light */}
         <directionalLight position={[0, 5, 5]} intensity={2} color="#ffffff" />
