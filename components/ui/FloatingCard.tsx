@@ -67,7 +67,7 @@ export const FloatingCard = forwardRef<any, FloatingCardProps>(
           className
         )}
         style={{ transformStyle: "preserve-3d", textDecoration: "none" }}
-        {...props}
+        {...(props as any)}
       >
         {/* The Card Glare (GSAP will animate its background-position) */}
         <div 
