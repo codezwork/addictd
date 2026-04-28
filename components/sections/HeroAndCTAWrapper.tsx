@@ -9,8 +9,8 @@ import { CardCTASection } from "./CardCTASection";
 
 export function HeroAndCTAWrapper({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const card1Ref = useRef<HTMLDivElement>(null);
-  const card2Ref = useRef<HTMLDivElement>(null);
+  const card1Ref = useRef<HTMLElement>(null);
+  const card2Ref = useRef<HTMLElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const [isDocked, setIsDocked] = useState(false);
 
@@ -268,7 +268,7 @@ export function HeroAndCTAWrapper({ children }: { children: React.ReactNode }) {
       {/* Background Hero Variant */}
       {children}
 
-      <section className="relative min-h-screen w-full py-32 px-6 md:px-12 flex items-center justify-center pt-[15vh]">
+      <section className="relative z-50 min-h-screen w-full py-32 px-6 md:px-12 flex items-center justify-center pt-[15vh]">
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
 
           {/* Left: Hero Copy */}
@@ -326,6 +326,7 @@ export function HeroAndCTAWrapper({ children }: { children: React.ReactNode }) {
               description="Access elite affiliate campaigns, generate links, and track your conversion velocity in real-time."
               icon="⚡"
               variant="primary"
+              href="https://app-addictd.vercel.app/"
             />
 
             <FloatingCard
@@ -335,6 +336,7 @@ export function HeroAndCTAWrapper({ children }: { children: React.ReactNode }) {
               description="Deploy campaigns, set ROAS targets, and let our predictive models manage your spend distribution."
               icon="🏢"
               variant="secondary"
+              href="https://app-addictd.vercel.app/"
             />
 
             {/* Bottom Navigation Dots */}
