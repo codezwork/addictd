@@ -11,11 +11,13 @@ interface FloatingCardProps extends React.HTMLAttributes<HTMLDivElement> {
   icon: string;
   variant: "primary" | "secondary";
   isDocked?: boolean;
+  href?: string;
 }
 
-export const FloatingCard = forwardRef<HTMLDivElement, FloatingCardProps>(
-  ({ className, title, tag, description, icon, variant, isDocked = false, ...props }, ref) => {
+export const FloatingCard = forwardRef<any, FloatingCardProps>(
+  ({ className, title, tag, description, icon, variant, isDocked = false, href, ...props }, ref) => {
     const innerRef = useRef<HTMLDivElement>(null);
+    const Component = href ? "a" : "div";
 
     useEffect(() => {
       if (!innerRef.current) return;
@@ -53,15 +55,18 @@ export const FloatingCard = forwardRef<HTMLDivElement, FloatingCardProps>(
     }, [isDocked]);
 
     return (
-      <div
+      <Component
         ref={ref}
+        href={href}
+        target={href ? "_blank" : undefined}
+        rel={href ? "noopener noreferrer" : undefined}
         className={cn(
           "absolute w-[300px] md:w-[340px] p-8 rounded-2xl border transition-colors duration-300 will-change-transform bg-[var(--color-surface)] z-50 group",
           variant === "primary" ? "border-[var(--color-border-accent)]" : "border-[var(--color-border-subtle)]",
-          isDocked ? "hover:border-[var(--color-purple)] hover:shadow-[0_0_30px_rgba(200,75,255,0.15)] cursor-pointer" : "",
+          isDocked || href ? "hover:border-[var(--color-purple)] hover:shadow-[0_0_30px_rgba(200,75,255,0.15)] cursor-pointer" : "",
           className
         )}
-        style={{ transformStyle: "preserve-3d" }}
+        style={{ transformStyle: "preserve-3d", textDecoration: "none" }}
         {...props}
       >
         {/* The Card Glare (GSAP will animate its background-position) */}
@@ -89,16 +94,16 @@ export const FloatingCard = forwardRef<HTMLDivElement, FloatingCardProps>(
             {description}
           </p>
           
-          <button className={cn(
+          <div className={cn(
             "inline-flex items-center gap-2 text-[13px] font-semibold px-5 py-2.5 rounded-full transition-transform hover:-translate-y-0.5 pointer-events-auto",
             variant === "primary" 
               ? "bg-gradient-to-r from-[var(--color-purple)] to-[var(--color-pink)] text-white" 
               : "bg-transparent border border-[var(--color-border-accent)] text-[var(--color-text-2)] hover:text-white hover:border-[var(--color-purple)]"
           )}>
             {variant === "primary" ? "Get Started" : "Login"}
-          </button>
+          </div>
         </div>
-      </div>
+      </Component>
     );
   }
 );
